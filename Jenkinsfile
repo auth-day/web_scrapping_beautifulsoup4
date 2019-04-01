@@ -1,1 +1,3 @@
-sh 'echo ok'
+node {
+  sh 'echo ok'
+}
