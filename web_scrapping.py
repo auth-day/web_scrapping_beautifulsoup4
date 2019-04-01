@@ -52,12 +52,15 @@ def draw_graph(updated_data):
 
     df['ChipTime_Minutes'] = pd.to_timedelta(df['Chip Time'])
     df['ChipTime_Minutes'] = df['ChipTime_Minutes'].astype('timedelta64[s]') / 60
-
+    df['Age_i'] = (pd.to_numeric(df['Age'], errors='coerce'))
+    
     # Create graph compare gender
     plt.bar(df['Gender'], df['ChipTime_Minutes'])
     plt.xlabel('Gender')
     plt.ylabel('ChipTime_Minutes')
     plt.title("Cimparison of average minutes run by male and female")
+    
+    plt.scatter(df['ChipTime_Minutes'], df['Age_i'])
     plt.show()
 
 if __name__ == '__main__':
