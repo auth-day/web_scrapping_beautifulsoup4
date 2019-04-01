@@ -8,7 +8,7 @@ node {
         
     stage('Build image') {
         
-        app = docker.build("web-scrapper" . )
+        app = docker.build("web-scrapper")
     }
     
     stage('Push image') {
