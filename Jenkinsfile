@@ -1,11 +1,22 @@
 node {
-    stage('Example') {
-        try {
-            sh 'exit 1'
-        }
-        catch (exc) {
-            echo 'Something failed, I should sound the klaxons!'
-            throw
-        }
+    def app
+
+    stage('Clone repository') {
+
+      checkout scm
     }
+        
+    stage('Build image') {
+        
+        app = docker.build("web-scrapper" .")
+    }
+    
+    stage('Push image') {
+        
+        def stand = "dev"
+        docker.withRegistry('http://registry.com:5000') {
+            app.push("${stand}")
+       }
+    }
+ 
 }
